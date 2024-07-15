@@ -1,0 +1,123 @@
+0. verificar conexion a base de datos
+	
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ferremas_bd',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    }
+}
+
+Cambia el puerto segun el puerto en el que tengas el xampp, si tienes mysql verifica que el servicio personal de mysql este detenido.
+
+
+
+Claro, aquí tienes la lista completa de pasos, incluyendo cómo manejar el error del archivo manage.py no encontrado:
+
+1. Exportar la Base de Datos desde el Equipo Actual
+Usar phpMyAdmin:
+
+Abre phpMyAdmin en tu navegador (http://localhost/phpMyAdmin).
+Selecciona la base de datos que deseas exportar.
+Haz clic en la pestaña "Exportar".
+Selecciona el método de exportación "Rápido".
+Asegúrate de que el formato sea SQL.
+Haz clic en "Continuar" y guarda el archivo .sql.
+Usar Línea de Comandos:
+
+Abre el símbolo del sistema.
+Navega al directorio de MySQL en XAMPP:
+sh
+Copiar código
+cd \xampp\mysql\bin
+Ejecuta el comando para exportar la base de datos:
+sh
+Copiar código
+mysqldump -u root -p nombre_de_tu_base_de_datos > C:\ruta\a\archivo.sql
+Ingresa la contraseña de MySQL cuando se te solicite.
+2. Transferir el Proyecto y la Base de Datos al Nuevo Equipo
+Copia la carpeta de tu proyecto (incluyendo todos los archivos y subcarpetas) al nuevo equipo.
+Transfiere el archivo .sql exportado al nuevo equipo.
+3. Instalar XAMPP y Configurar el Entorno en el Nuevo Equipo
+Descarga e instala XAMPP en el nuevo equipo.
+Copia la carpeta del proyecto al directorio htdocs de XAMPP en el nuevo equipo.
+Asegúrate de que la configuración de la base de datos en tu proyecto (por ejemplo, en settings.py si usas Django) esté actualizada para reflejar la configuración en el nuevo equipo (normalmente localhost y el puerto predeterminado).
+4. Importar la Base de Datos en el Nuevo Equipo
+Usar phpMyAdmin:
+
+Abre phpMyAdmin en el nuevo equipo (http://localhost/phpMyAdmin).
+Crea una nueva base de datos con el mismo nombre que tenía en el equipo original.
+Selecciona la base de datos recién creada.
+Haz clic en la pestaña "Importar".
+Selecciona el archivo .sql que transferiste.
+Haz clic en "Continuar" para importar la base de datos.
+Usar Línea de Comandos:
+
+Abre el símbolo del sistema.
+Navega al directorio de MySQL en XAMPP:
+sh
+Copiar código
+cd \xampp\mysql\bin
+Ejecuta el comando para importar la base de datos:
+sh
+Copiar código
+mysql -u root -p nombre_de_tu_base_de_datos < C:\ruta\a\archivo.sql
+Ingresa la contraseña de MySQL cuando se te solicite.
+5. Verificar la Instalación
+Inicia Apache y MySQL desde el panel de control de XAMPP.
+Prueba tu aplicación accediendo a ella desde el navegador (http://localhost/nombre_de_tu_proyecto).
+6. Resolver el Error del Archivo manage.py No Encontrado
+Si ves el error can't open file 'manage.py': [Errno 2] No such file or directory al intentar ejecutar un comando de Django, sigue estos pasos:
+
+Verifica la ubicación del archivo manage.py:
+
+Asegúrate de que el archivo manage.py esté en el directorio C:\Users\Nacho\Desktop\ferremas-main-2.0.
+Navega al directorio correcto:
+
+Abre PowerShell o el símbolo del sistema y navega al directorio de tu proyecto:
+powershell
+Copiar código
+cd C:\Users\Nacho\Desktop\ferremas-main-2.0
+Verifica el entorno virtual:
+
+Asegúrate de que tu entorno virtual esté activado:
+powershell
+Copiar código
+.\venv\Scripts\activate
+Ejecuta el comando nuevamente:
+
+Una vez que estés en el directorio correcto y con el entorno virtual activado, intenta ejecutar el comando:
+powershell
+Copiar código
+python manage.py migrate
+Verifica el nombre y la ubicación del archivo:
+
+Asegúrate de que el archivo manage.py no haya sido renombrado o movido.
+Verifica permisos:
+
+Asegúrate de tener los permisos necesarios para acceder y ejecutar archivos en el directorio del proyecto. Si es necesario, intenta ejecutar PowerShell como administrador.
+Configura el entorno virtual correctamente:
+
+Si aún tienes problemas, intenta crear y activar un nuevo entorno virtual:
+powershell
+Copiar código
+cd C:\Users\Nacho\Desktop\ferremas-main-2.0
+python -m venv venv
+.\venv\Scripts\activate
+pip install -r requirements.txt
+Ejecuta la migración:
+
+Después de activar el entorno virtual y asegurarte de estar en el directorio correcto, intenta ejecutar la migración nuevamente:
+powershell
+Copiar código
+python manage.py migrate
+Siguiendo estos pasos, deberías poder resolver el error y asegurar que tu proyecto y su base de datos se migren correctamente al nuevo equipo. Si encuentras algún otro problema, no dudes en comentarlo.
+
+
+
+
+
+
