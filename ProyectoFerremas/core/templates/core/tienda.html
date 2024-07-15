@@ -1,0 +1,46 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block principal %}
+<link rel="stylesheet" href="{% static 'core/css/productos.css' %}">
+<title>Tienda</title>
+</head>
+<body>
+  <div class="container">
+    <div class="orden">
+      {% for p in productos %}
+      <div class="card">
+        <img src="{{ p.imagen.url }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{ p.nombre }}</h5>
+          <p class="card-text">{{ p.descripcion }}</p>
+          <p class="card-text">Precio: ${{ p.precio }}</p>
+          <p class="card-text">Stock: {{ p.stock }}</p>
+          <a href="{% url 'AGREGAR_AL_CARRITO' p.id %}" class="btn btn-primary">Añadir al carrito</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <style>
+    .orden {
+      display: flex;
+      justify-content: start;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      width: calc(70% / 3 - 20px); /* Ancho aproximado para 3 tarjetas por fila con espacio entre ellas */
+      margin: 10px; /* Espacio entre las tarjetas */
+    }
+    
+    .card img {
+      max-width:100%;
+      height: 70%
+      ;
+    }
+  </style>
+
+{% endblock principal %}
